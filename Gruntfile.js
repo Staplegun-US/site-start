@@ -67,6 +67,10 @@ module.exports = function (grunt) {
                 files: [ 'assets/sass/concat.scss' ],
                 tasks: [ 'sass' ]
             },
+            images: {
+              files: [ 'assets/images/src/*' ],
+              tasks: [ 'newer:imagemin' ]
+            },
             coffee: {
               files: [ 'assets/coffee/_*.coffee' ],
               tasks: ['coffee']
