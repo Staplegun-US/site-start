@@ -38,45 +38,70 @@ assets
 +-- css
 |   +--screen.css
 +-- coffee
-|   +--_script.coffee
+|   +--application.coffee
+|   +--script.coffee
 +-- js
-|   +--ie
-|   |   +-- ...
-|   +--_script.js
-|   +--_coffee.js
-|   +--script.min.js
-|   +--ie.min.js
+|   +-- ie
+|   |   +-- ..
+|   +-- lib
+|   |   +-- ..
+|   +-- min
+|   |   +-- ..
+|   +--application.js
+|   +--script.js
+|   +--coffee.js
 +-- sass
-|   +--concat.scss
-|   +--_screen.scss
+|   +-- partials
+|   |   +-- ..
+|   +--application.scss
+|   +--screen.scss
 ```
 
 Running grunt will do the following for you
 #### CSS
-* Concatinate sass files prefixed with an underscore in the `assets/sass/`
-  directory, into `assets/sass/concat.scss`
-* Compile `assets/sass/concat.scss` into `assets/css/screen.css`, as well as
+* Import all sass files into `assets/sass/application.scss` (through Sass imports)
+* Compile `assets/sass/application.scss` into `assets/css/screen.css`, as well as
   minimize that file
 
-Grunt runs the Sass task with `bundle exec` and automatically includes the
-susy grid toolkit, so as long as you have
+Grunt runs the Sass task with `bundle exec` and automatically includes compass
+and the susy grid toolkit, so as long as you have
 installed your gems with bundler, grunt will be using the right versions of susy
 and compass.
 
 #### JS
-* Concatinate coffeescript files prefixed with an underscore in the
-  `assets/coffee/` directory, into `assets/js/\_coffee.js`
-* Compile javascript files prefixed with an underscore in the `assets/js`
-  directory, into `assets/js/scripts.min.js`, and minify that file
-* Compile all javascript files in `assets/js/ie/` into `assets/js/ie.min.js`, and
-  minify that file
+* Compile all coffeescript files listed in `assets/coffee/application.coffee` into an untracked build
+  directory (`assets/coffee/build/`), which further gets turned into
+  `assets/javascript/coffee.js`
+* Compile all javascript files listed in `assets/js/application.js` into an untracked build
+  directory (`assets/js/build/`), which will then get minified into
+  `assets/js/min/scripts.js`
+* Compile all javascript files listed in `assets/js/ie/application.js` into an untracked build
+  directory (`assets/js/ie/build/`), which will then get minified into
+  `assets/js/min/ie.js`
+
+**In Summary**: The important files you care about including overall are:
+* `assets/js/min/scripts.min.js`
+* `assets/css/screen.css`
+* `assets/js/min/ie.min.js` -- If you are supporting deprecated IE versions
+
+#### Images
+Grunt also will automatically optimize your images, and keep an unoptimized backup.
+
+* Put images in `assets/images/src`
+* Optimized images will get placed in `assets/images/dist` with the same
+  filenames.
+
+Only images that have been modified will ever get re-optimized.
+
+`grunt watch` will watch the images directory, or there is the separate `grunt
+images` task that will specifically optimize all images that need minifying.
 
 And after all this occurs, grunt will continue to watch the necessary files for
 updates automatically, and run the necessary grunt tasks when any files are
 changed.
 
 If you add in any sass/coffee/js files that you don't want automatically
-compiled, then just don't prefix those files with an underscore.
+compiled, then just don't include them in the directory's application.* file.
 
 All of the final result files that Grunt compiles for you are already
 included in the `index.html`, so hack away without worry!
