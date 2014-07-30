@@ -3,6 +3,16 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        bower : {
+          install : {
+            options : {
+              targetDir : 'src/requires',
+              layout : 'byComponent',
+              verbose: true,
+              cleanup: true
+            }
+          }
+        },
         rig: {
           coffee: {
             files: { 'assets/coffee/build/application.build.coffee': [ 'assets/coffee/application.coffee' ] },
@@ -91,6 +101,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-rigger');
+    grunt.loadNpmTasks('grunt-bower-task');
 
     // Default task(s).
     grunt.registerTask('default', [
@@ -101,4 +112,5 @@ module.exports = function (grunt) {
         'watch'
       ]);
     grunt.registerTask( 'images', [ 'newer:imagemin'] );
+    grunt.registerTask( 'init', [ 'bower:install'] );
 };
