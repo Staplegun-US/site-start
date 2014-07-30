@@ -13,6 +13,21 @@ module.exports = function (grunt) {
             }
           }
         },
+        browserify : {
+          vendor : {
+            src : [
+              'src/requires/jquery/js/jquery.min.js',
+              'src/requires/underscore/js/underscore.js',
+              'src/requires/modernizr/modernizr.js'
+            ],
+            dest : 'build/vendor.js'
+          },
+          app : {
+            files : {
+              'build/app.js' : ['src/js/app.js']
+            }
+          }
+        },
         rig: {
           coffee: {
             files: { 'assets/coffee/build/application.build.coffee': [ 'assets/coffee/application.coffee' ] },
@@ -102,6 +117,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-rigger');
     grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-browserify');
 
     // Default task(s).
     grunt.registerTask('default', [
