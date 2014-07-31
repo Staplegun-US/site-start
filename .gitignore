@@ -8,7 +8,10 @@ venv
 .Trashes
 *.pyc
 .idea
-.gems
 node_modules/
 build/
 dist/*.map
+
+Gemfile.lock
+vendor/bundle/
+tmp/
