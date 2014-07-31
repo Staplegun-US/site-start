@@ -52,10 +52,10 @@ module.exports = function (grunt) {
                     compass: true,
                     sourcemap: false,
                     lineNumbers: true,
-                    require: 'susy'
+                    require: ['susy', 'normalize-scss']
                 },
                 files: {
-                    'assets/css/screen.css': [ 'assets/sass/application.scss' ]
+                    'dist/app.css': [ 'src/sass/app.scss' ]
                 }
             }
         },
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
                 livereload: true
             },
             sass: {
-                files: [ 'assets/sass/*.scss' ],
+                files: [ 'src/sass/*.scss', 'src/sass/**/*.scss' ],
                 tasks: [ 'sass' ]
             },
             images: {

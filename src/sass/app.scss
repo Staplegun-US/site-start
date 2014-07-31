@@ -1,0 +1,11 @@
+// Main App SCSS File
+// Centralize your imports here
+
+// Import Ruby gems
+@import "compass";
+@import "susy";
+@import "normalize";
+
+// Custom stylesheets
+@import "partials/utilities";
+@import "partials/screen";
