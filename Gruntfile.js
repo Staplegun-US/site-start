@@ -63,9 +63,9 @@ module.exports = function (grunt) {
           dynamic: {
             files: [{
               expand: true,               // Enable dynamic expansion
-              cwd: 'assets/images/src/',  // Src matches are relative to this path
+              cwd: 'src/images/',         // Src matches are relative to this path
               src: ['*.{png,jpg,gif}'],   // Actual patterns to match
-              dest: 'assets/images/dist/' // Destination path prefix
+              dest: 'dist/images/'        // Destination path prefix
             }]
           }
         },
@@ -78,16 +78,16 @@ module.exports = function (grunt) {
                 tasks: [ 'sass' ]
             },
             images: {
-              files: [ 'assets/images/src/*' ],
+              files: [ 'src/images/*' ],
               tasks: [ 'newer:imagemin' ]
             },
             uglify_dist: {
-	            files: [ 'src/js/*.js' ],
-	            tasks: [ 'browserify:app', 'uglify:dist' ]
+              files: [ 'src/js/*.js' ],
+              tasks: [ 'browserify:app', 'uglify:dist' ]
             },
             uglify_ie: {
-	            files: [ 'src/js/ie/*.js' ],
-	            tasks: [ 'browserify:ie', 'uglify:ie' ]
+              files: [ 'src/js/ie/*.js' ],
+              tasks: [ 'browserify:ie', 'uglify:ie' ]
             }
         },
     });
@@ -95,7 +95,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-bower-task');
