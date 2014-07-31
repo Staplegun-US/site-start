@@ -26,23 +26,10 @@ module.exports = function (grunt) {
             files : {
               'build/app.js' : ['src/js/app.js']
             }
-          }
-        },
-        rig: {
-          coffee: {
-            files: { 'assets/coffee/build/application.build.coffee': [ 'assets/coffee/application.coffee' ] },
           },
-          dist: {
-            files: { 'assets/js/build/application.build.js': [ 'assets/js/application.js' ] }
-          },
-          ie: {
-            files: { 'assets/js/build/application.ie.build.js': [ 'assets/js/ie/application.js' ] }
-          }
-        },
-        coffee: {
-          compile: {
-            files: {
-              'assets/js/coffee.js': ['assets/coffee/build/application.build.coffee']
+          ie : {
+            files : {
+              'build/app.ie.js' : ['src/js/ie/app.js']
             }
           }
         },
@@ -51,10 +38,10 @@ module.exports = function (grunt) {
               sourceMap: true
             },
             dist: {
-              files: { 'assets/js/min/scripts.min.js': [ 'assets/js/build/application.build.js'   ], },
+              files: { 'dist/app.js': [ 'build/vendor.js', 'build/app.js' ], },
             },
             ie: {
-              files: { 'assets/js/min/ie.min.js':      [ 'assets/js//build/application.ie.build.js' ] },
+              files: { 'dist/app.ie.js': [ 'build/app.ie.js' ] },
             }
         },
         sass: {
@@ -94,17 +81,13 @@ module.exports = function (grunt) {
               files: [ 'assets/images/src/*' ],
               tasks: [ 'newer:imagemin' ]
             },
-            coffee: {
-              files: [ 'assets/coffee/*.coffee' ],
-              tasks: ['rig:coffee', 'coffee']
-            },
             uglify_dist: {
-	            files: [ 'assets/js/*.js' ],
-	            tasks: [ 'rig:dist', 'uglify:dist' ]
+	            files: [ 'src/js/*.js' ],
+	            tasks: [ 'browserify:app', 'uglify:dist' ]
             },
             uglify_ie: {
-	            files: [ 'assets/js/ie/*.js' ],
-	            tasks: [ 'rig:ie', 'uglify:ie' ]
+	            files: [ 'src/js/ie/*.js' ],
+	            tasks: [ 'browserify:ie', 'uglify:ie' ]
             }
         },
     });
@@ -115,14 +98,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-rigger');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-browserify');
 
     // Default task(s).
     grunt.registerTask('default', [
-        'rig',
-        'coffee',
+        'browserify',
         'uglify',
         'sass',
         'watch'

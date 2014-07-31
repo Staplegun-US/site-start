@@ -10,5 +10,5 @@ venv
 .idea
 .gems
 node_modules/
-assets/**/build/
-assets/js/min/*.map
+build/
+dist/*.map

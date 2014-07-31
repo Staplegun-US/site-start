@@ -13,10 +13,6 @@
     <link rel="shortcut icon" href="">
 
     <link rel="stylesheet" href="assets/css/screen.css">
-    <script src="assets/js/lib/modernizr-2.7.1.min.js"></script>
-    <!--[if lt IE 9]>
-      <script src="assets/js/min/ie.min.js"></script>
-    <![endif]-->
   </head>
   <body>
     <!--[if lt IE 8]>
@@ -34,7 +30,10 @@
 
     <script src="build/vendor.js"></script>
     <script src="build/app.js"></script>
-    <!-- <script src="assets/js/min/scripts.min.js"></script> -->
+    <!--[if lt IE 9]>
+      <script src="build/app.ie.js"></script>
+    <![endif]-->
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
