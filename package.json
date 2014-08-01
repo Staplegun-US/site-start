@@ -2,10 +2,14 @@
   "name": "site-start",
   "version": "0.1.0",
   "author": "Staplegun.US",
+  "descripton": "A Boilerplate starter-kit for starting development right - the Staplegun way. Includes build automation and common CSS and JS libraries",
   "homepage": "https://github.com/Staplegun-US/site-start",
   "repository" : {
     "type"  : "git",
     "url"   : "https://github.com/Staplegun-US/site-start"
+  },
+  "bugs": {
+    "url": "https://github.com/Staplegun-US/site-start/issues"
   },
   "browser": {
     "jquery": "./src/requires/jquery/js/jquery.min.js",
@@ -33,5 +37,7 @@
       "grunt-browserify": "2.1.4",
       "browserify": "~3.44.2",
       "browserify-shim": "~3.4.1"
-  }
+  },
+  "private": "true",
+  "license": "MIT"
 }
