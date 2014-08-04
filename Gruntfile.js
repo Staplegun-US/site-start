@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         bower : {
           install : {
             options : {
-              targetDir : 'src/requires',
+              targetDir : 'vendor/bower_components',
               layout : 'byComponent',
               verbose: true,
               cleanup: true
@@ -16,9 +16,9 @@ module.exports = function (grunt) {
         browserify : {
           vendor : {
             src : [
-              'src/requires/jquery/js/jquery.min.js',
-              'src/requires/underscore/js/underscore.js',
-              'src/requires/modernizr/modernizr.js'
+              'vendor/bower_components/jquery/js/jquery.min.js',
+              'vendor/bower_components/underscore/js/underscore.js',
+              'vendor/bower_components/modernizr/modernizr.js'
             ],
             dest : 'build/vendor.js'
           },
