@@ -1,3 +1,5 @@
+var ngrok = require('ngrok');
+
 module.exports = function (grunt) {
 
     // Project configuration.
@@ -75,17 +77,15 @@ module.exports = function (grunt) {
           },
           desktop: {
             options: {
-              url: "http://localhost:8000",
-              locale: "en",
               strategy: "desktop",
+              locale: "en",
               threshold: 80
             }
           },
           mobile: {
             options: {
-              url: "http://localhost:8000",
-              locale: "en",
               strategy: "mobile",
+              locale: "en",
               threshold: 80
             }
           }
@@ -113,6 +113,22 @@ module.exports = function (grunt) {
         },
     });
 
+    // Register task for ngrok-pagespeed
+    grunt.registerTask('ngrok-pagespeed', 'Run pagespeed with ngrok', function() {
+      var done = this.async();
+      var port = 8000;
+
+      ngrok.connect(port, function(err, url) {
+        if (err !== null) {
+          grunt.fail.fatal(err);
+          return done();
+        }
+        grunt.config.set('pagespeed.options.url', url);
+        grunt.task.run('pagespeed');
+        done();
+      });
+    });
+
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -124,11 +140,13 @@ module.exports = function (grunt) {
 
     // Default task(s).
     grunt.registerTask('default', [
-        'browserify',
-        'uglify',
-        'sass',
-        'watch'
-      ]);
-    grunt.registerTask( 'images', [ 'newer:imagemin'] );
-    grunt.registerTask( 'init', [ 'bower:install'] );
+      'browserify',
+      'uglify',
+      'sass',
+      'watch'
+    ]);
+
+    grunt.registerTask( 'init',     [ 'bower:install'] );
+    grunt.registerTask( 'images',   [ 'newer:imagemin'] );
+    grunt.registerTask( 'analyze',  [ 'ngrok-pagespeed'] );
 };
