@@ -69,6 +69,27 @@ module.exports = function (grunt) {
             }]
           }
         },
+        pagespeed: {
+          options: {
+            nokey: true
+          },
+          desktop: {
+            options: {
+              url: "http://localhost:8000",
+              locale: "en",
+              strategy: "desktop",
+              threshold: 80
+            }
+          },
+          mobile: {
+            options: {
+              url: "http://localhost:8000",
+              locale: "en",
+              strategy: "mobile",
+              threshold: 80
+            }
+          }
+        },
         watch: {
             options: {
                 livereload: true
@@ -99,6 +120,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-pagespeed');
 
     // Default task(s).
     grunt.registerTask('default', [
