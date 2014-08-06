@@ -20,9 +20,13 @@ module.exports = function (grunt) {
             src : [
               'vendor/bower_components/jquery/js/jquery.min.js',
               'vendor/bower_components/underscore/js/underscore.js',
-              'vendor/bower_components/modernizr/modernizr.js'
             ],
             dest : 'build/vendor.js'
+          },
+          beforeBody : {
+            files: {
+              'build/beforeBody.js' : ['src/js/beforeBody.js']
+            }
           },
           app : {
             files : {
@@ -40,7 +44,10 @@ module.exports = function (grunt) {
               sourceMap: true
             },
             dist: {
-              files: { 'dist/app.js': [ 'build/vendor.js', 'build/app.js' ], },
+              files: {
+                'dist/app.js':        [ 'build/vendor.js', 'build/app.js' ],
+                'dist/beforeBody.js': [ 'build/beforeBody.js' ],
+              },
             },
             ie: {
               files: { 'dist/app.ie.js': [ 'build/app.ie.js' ] },
@@ -104,7 +111,7 @@ module.exports = function (grunt) {
             },
             uglify_dist: {
               files: [ 'src/js/*.js' ],
-              tasks: [ 'browserify:app', 'uglify:dist' ]
+              tasks: [ 'browserify:app', 'browserify:beforeBody', 'uglify:dist' ]
             },
             uglify_ie: {
               files: [ 'src/js/ie/*.js' ],

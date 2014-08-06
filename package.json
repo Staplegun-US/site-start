@@ -19,7 +19,7 @@
   "browserify-shim": {
     "jquery": "$",
     "underscore": "_",
-    "modernizr": { "exports": "Modernizr", "depends": "jquery:$" }
+    "modernizr": "Modernizr"
   },
   "browserify": {
     "transform": [
