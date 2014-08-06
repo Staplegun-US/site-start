@@ -1,0 +1,16 @@
+#!/bin/bash
+
+printf "\n\n$(tput setaf 6)Installing Ruby Gems...$(tput sgr 0)\n\n";
+sleep 1;
+bundle install;
+printf "\n\n$(tput setaf 6)...DONE!$(tput sgr 0)";
+
+printf "\n\n$(tput setaf 6)Installing Node Modules...$(tput sgr 0)\n\n";
+sleep 1;
+npm install;
+printf "\n\n$(tput setaf 6)...DONE!$(tput sgr 0)";
+
+printf "\n\n$(tput setaf 6)Installing Bower Components...$(tput sgr 0)\n\n";
+sleep 1;
+grunt init;
+printf "\n\n$(tput setaf 6)...DONE!$(tput sgr 0)";
