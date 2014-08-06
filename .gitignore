@@ -14,5 +14,6 @@ dist/*.map
 
 Gemfile.lock
 vendor/bundle/
+bin/bundle/
 vendor/bower_components/
 tmp/
