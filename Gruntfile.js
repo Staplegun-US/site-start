@@ -23,14 +23,14 @@ module.exports = function (grunt) {
             ],
             dest : 'build/vendor.js'
           },
-          beforeBody : {
-            files: {
-              'build/beforeBody.js' : ['src/js/beforeBody.js']
-            }
-          },
           app : {
             files : {
               'build/app.js' : ['src/js/app.js']
+            }
+          },
+          beforeBody : {
+            files: {
+              'build/beforeBody.js' : ['src/js/beforeBody.js']
             }
           },
           ie : {
@@ -43,9 +43,13 @@ module.exports = function (grunt) {
             options: {
               sourceMap: true
             },
-            dist: {
+            app: {
               files: {
-                'dist/app.js':        [ 'build/vendor.js', 'build/app.js' ],
+                'dist/app.js': [ 'build/vendor.js', 'build/app.js' ],
+              },
+            },
+            beforeBody: {
+              files: {
                 'dist/beforeBody.js': [ 'build/beforeBody.js' ],
               },
             },
@@ -97,13 +101,17 @@ module.exports = function (grunt) {
             }
           }
         },
+        concurrent: {
+          browserify: [ 'browserify:app', 'browserify:beforeBody' ],
+          uglify:     [ 'uglify:app', 'uglify:beforeBody' ],
+        },
         watch: {
             options: {
-                livereload: true
+              livereload: true
             },
             sass: {
-                files: [ 'src/sass/*.scss', 'src/sass/**/*.scss' ],
-                tasks: [ 'sass' ]
+              files: [ 'src/sass/*.scss', 'src/sass/**/*.scss' ],
+              tasks: [ 'sass' ]
             },
             images: {
               files: [ 'src/images/*' ],
@@ -111,7 +119,7 @@ module.exports = function (grunt) {
             },
             uglify_dist: {
               files: [ 'src/js/*.js' ],
-              tasks: [ 'browserify:app', 'browserify:beforeBody', 'uglify:dist' ]
+              tasks: [ 'concurrent:browserify', 'concurrent:uglify' ]
             },
             uglify_ie: {
               files: [ 'src/js/ie/*.js' ],
@@ -144,6 +152,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-pagespeed');
+    grunt.loadNpmTasks('grunt-concurrent');
 
     // Default task(s).
     grunt.registerTask('default', [
