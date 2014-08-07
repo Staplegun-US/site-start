@@ -45,16 +45,16 @@ module.exports = function (grunt) {
             },
             app: {
               files: {
-                'dist/app.js': [ 'build/vendor.js', 'build/app.js' ],
+                'dist/js/app.js': [ 'build/vendor.js', 'build/app.js' ],
               },
             },
             beforeBody: {
               files: {
-                'dist/beforeBody.js': [ 'build/beforeBody.js' ],
+                'dist/js/beforeBody.js': [ 'build/beforeBody.js' ],
               },
             },
             ie: {
-              files: { 'dist/app.ie.js': [ 'build/app.ie.js' ] },
+              files: { 'dist/js/app.ie.js': [ 'build/app.ie.js' ] },
             }
         },
         sass: {
@@ -68,7 +68,7 @@ module.exports = function (grunt) {
                     require: ['susy', 'normalize-scss']
                 },
                 files: {
-                    'dist/app.css': [ 'src/sass/app.scss' ]
+                    'dist/css/app.css': [ 'src/sass/app.scss' ]
                 }
             }
         },

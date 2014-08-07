@@ -10,7 +10,7 @@ venv
 .idea
 node_modules/
 build/
-dist/*.map
+*.map
 
 Gemfile.lock
 vendor/bundle/
