@@ -6,13 +6,5 @@
     "underscore": "~1.6.0",
     "jquery": "~1.11",
     "modernizr": "~2.8.3"
-  },
-  "exportsOverride": {
-    "jquery": {
-      "js": "dist/*.js"
-    },
-    "underscore": {
-      "js": "underscore.js"
-    }
   }
 }
