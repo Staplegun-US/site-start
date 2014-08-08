@@ -65,7 +65,7 @@ module.exports = function (grunt) {
                     compass: true,
                     sourcemap: false,
                     lineNumbers: true,
-                    require: ['susy', 'normalize-scss']
+                    require: ['susy']
                 },
                 files: {
                     'dist/css/app.css': [ 'src/sass/app.scss' ]
