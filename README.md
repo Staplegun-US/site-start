@@ -1,110 +1,159 @@
 site-start
 ==========
 
-A starter site kit that includes normalize.css, Susy 2 Grid, SASS compilation, Compass, Coffeescript compilation,
-automatic CSS and JS minification, and a few custom mixins and javascript snippets.
+A starter site kit that includes:
+
+* Common vendor scripts
+  * Compass
+  * Susy 2
+  * Normalize.css
+  * jQuery
+  * Underscore.js
+  * Modernizr
+* Build Automation (via Grunt.js)
+  * SASS compilation
+  * Javascript run through Browserify
+  * Automatic CSS/JS minification and image optimization
+  * Pagespeed Analytics
+  * Watching for changes
+* Common icon fonts pre-installed
+* 404 Page (from HTML5 Boilerplate)
+* Default root settings files (robots.txt, humans.txt, crossdomain.xml, .editorconfig,
+  .htaccess)
 
 ## Installation
 ```bash
 git clone https://github.com/Staplegun-US/site-start.git
 cd site-start
-bundle # To get your gems installed
-npm install # To install your node packages
+bin/install
 ```
 
-We use bundler here to install Susy and Compass gems and manage dependencies.
-Bundler ensures that your gem versions are the ones that are explicitly defined in the
-`Gemfile`. These gems are only
-installed in the local project directory, and won't affect any global gems you use. If you need to use
-the CLI tools these gems provide, run `bin/sass` or `bin/compass`, or prefix your
-command with `bundle exec`
+Running `bin/install` will take care of installing the necessary gems, bower
+components, and node packages you'll need. Files only are installed on a
+local project-level, not globally.
 
 ## Usage
 
-The `index.html` comes preset with your doctypes, google analytics settings,
-css/js inclusions, and a basic semantic body to get you started. To make full
+The `index.html` comes preset with base google analytics code,
+css/js file inclusions, base meta settings, and a basic semantic body to get you started. To make full
 use of the site-start though, you'll want to use grunt.
 
-## Grunt
+## Build Automation with Grunt.js
 
-To run grunt:
+Grunt Commands
 ```bash
-grunt
+grunt           # Default command to build everything and watch for changes
+grunt images    # Optimize all new images
+grunt init      # Install Bower Components - run after you update bower.js
+grunt analyze   # Run pagespeed analytics
 ```
 
-Here's the assets directory structure:
+#### Sass
+There is a main scss file which site-start uses to build your CSS. Use it to
+centralize your imports.
+
 ```
-assets
-+-- css
-|   +--screen.css
-+-- coffee
-|   +--application.coffee
-|   +--script.coffee
-+-- js
-|   +-- ie
-|   |   +-- ..
-|   +-- lib
-|   |   +-- ..
-|   +-- min
-|   |   +-- ..
-|   +--application.js
-|   +--script.js
-|   +--coffee.js
-+-- sass
-|   +-- partials
-|   |   +-- ..
-|   +--application.scss
-|   +--screen.scss
+src/sass/app.scss       # Main Sass, included in the body
+
+Built to: dist/css
 ```
 
-Running grunt will do the following for you
-#### CSS
-* Import all sass files into `assets/sass/application.scss` (through Sass imports)
-* Compile `assets/sass/application.scss` into `assets/css/screen.css`, as well as
-  minimize that file
+#### Javascript
+There are 3 main javascript files which site-start uses to build your JS.
 
-Grunt runs the Sass task with `bundle exec` and automatically includes compass
-and the susy grid toolkit, so as long as you have
-installed your gems with bundler, grunt will be using the right versions of susy
-and compass.
+```
+src/js/app.js           # Main JS File, included in the body
+src/js/beforeBody.js    # Included in the gead
+src/js/ie/app.js        # JS file for IE8
 
-#### JS
-* Compile all coffeescript files listed in `assets/coffee/application.coffee` into an untracked build
-  directory (`assets/coffee/build/`), which further gets turned into
-  `assets/javascript/coffee.js`
-* Compile all javascript files listed in `assets/js/application.js` into an untracked build
-  directory (`assets/js/build/`), which will then get minified into
-  `assets/js/min/scripts.js`
-* Compile all javascript files listed in `assets/js/ie/application.js` into an untracked build
-  directory (`assets/js/ie/build/`), which will then get minified into
-  `assets/js/min/ie.js`
+Built to: dist/js
+```
 
-**In Summary**: The important files you care about including overall are:
-* `assets/js/min/scripts.min.js`
-* `assets/css/screen.css`
-* `assets/js/min/ie.min.js` -- If you are supporting deprecated IE versions
+All of these files use Node.js-style `require()` calls to include files, which
+allows you to include third party scripts inside these JS files. These files get
+built and bundled with Browserify.
 
-#### Images
-Grunt also will automatically optimize your images, and keep an unoptimized backup.
-
-* Put images in `assets/images/src`
-* Optimized images will get placed in `assets/images/dist` with the same
-  filenames.
-
-Only images that have been modified will ever get re-optimized.
-
-`grunt watch` will watch the images directory, or there is the separate `grunt
-images` task that will specifically optimize all images that need minifying.
-
-And after all this occurs, grunt will continue to watch the necessary files for
-updates automatically, and run the necessary grunt tasks when any files are
-changed.
-
-If you add in any sass/coffee/js files that you don't want automatically
-compiled, then just don't include them in the directory's application.* file.
+Grunt will watch for all scss and js files in their respective directories, and
+recompile after any changes.
 
 All of the final result files that Grunt compiles for you are already
 included in the `index.html`, so hack away without worry!
 
-========
-## [Staplegun](http://staplegun.us)
+#### Images
+Grunt automatically optimizes your images, and keeps unoptimized backups.
+
+```
+Place in:  src/images
+Built to:  dist/images
+```
+
+Only images that have been modified will ever get re-optimized.
+
+`grunt` will watch the images directory
+`grunt images` will manually minify all new images
+
+## Base Icon Fonts
+
+site-start ships with common icon fonts you may want to use. You can view them
+in `dist/fonts/base-icon-fonts/demo.html`. Include them by adding a
+`base-icon-[name]` class to any element. Example:
+
+```html
+<i class="base-icon-facebook"></i>
+```
+
+## Package Managers
+
+site-start uses 3 package managers to manage dependencies:
+
+* Ruby Gems
+* Bower
+* NPM
+
+After adding any packages, run:
+```
+bin/install
+```
+
+#### Ruby Gems
+
+File to update when adding package: `Gemfile`
+
+Some gems will include new executable commands, which can be run as follows:
+
+```bash
+bundle exec [command-name]
+
+-or-
+
+bin/bundle/[command-name]
+```
+
+#### Bower Components
+
+File to update when adding package: `bower.json`
+
+#### Node Packages
+
+File to update when adding package: `package.json`
+
+## License
+
+Copyright (c) 2014 [Staplegun Design](http://staplegun.us)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the 'Software'), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
