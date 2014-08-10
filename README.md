@@ -38,12 +38,12 @@ bin/install
 ```
 
 Running `bin/install` will take care of installing the necessary gems, bower
-components, and node packages you'll need. Files only are installed on a
+components, and node packages you'll need. Packages are only installed on a
 local project-level, not globally.
 
 ## Usage
 
-The `index.html` comes preset with base google analytics code,
+The `index.html` comes preset with google analytics code,
 css/js file inclusions, base meta settings, and a basic semantic body to get you started. To make full
 use of the site-start though, you'll want to use grunt.
 
@@ -53,7 +53,7 @@ Grunt Commands
 ```bash
 grunt           # Default command to build everything and watch for changes
 grunt images    # Optimize all new images
-grunt init      # Install Bower Components - run after you update bower.js
+grunt init      # Install Bower Components
 grunt analyze   # Run pagespeed analytics
 ```
 
@@ -72,14 +72,14 @@ There are 3 main javascript files which site-start uses to build your JS.
 
 ```
 src/js/app.js           # Main JS File, included in the body
-src/js/beforeBody.js    # Included in the gead
+src/js/beforeBody.js    # Included in the head
 src/js/ie/app.js        # JS file for IE8
 
 Built to: dist/js
 ```
 
 All of these files use Node.js-style `require()` calls to include files, which
-allows you to include third party scripts inside these JS files. These files get
+allows you to include external scripts inside these JS files. These files get
 built and bundled with Browserify.
 
 Grunt will watch for all scss and js files in their respective directories, and
@@ -119,14 +119,15 @@ site-start uses 3 package managers to manage dependencies:
 * Bower
 * NPM
 
-After adding any packages, run this to install them:
+After adding any packages, run this to install/update them:
 ```
 bin/install
 ```
 
 #### Ruby Gems
 
-File to update when adding package: `Gemfile`
+* File to update when adding package: `Gemfile`
+* Packages get built to: `vendor/bundle/`
 
 Some gems will include new executable commands, which can be run as follows:
 
@@ -140,11 +141,13 @@ bin/bundle/[command-name]
 
 #### Bower Components
 
-File to update when adding package: `bower.json`
+* File to update when adding package: `bower.json`
+* Packages get built to: `vendor/bower_components/`
 
 #### Node Packages
 
-File to update when adding package: `package.json`
+* File to update when adding package: `package.json`
+* Packages get built to: `node_modules/`
 
 ## License
 
