@@ -12,14 +12,23 @@ A starter site kit that includes:
   * Modernizr
 * Build Automation (via Grunt.js)
   * SASS compilation
-  * Javascript run through Browserify
-  * Automatic CSS/JS minification and image optimization
+  * Javascript built with Browserify
+  * Automatic CSS/JS minification
+  * Image optimization
   * Pagespeed Analytics
   * Watching for changes
 * Common icon fonts pre-installed
 * 404 Page (from HTML5 Boilerplate)
 * Default root settings files (robots.txt, humans.txt, crossdomain.xml, .editorconfig,
   .htaccess)
+
+## Requirements
+
+To use everything site-start ships with, you must have the following installed:
+
+  * Ruby
+  * NPM
+  * Bower
 
 ## Installation
 ```bash
@@ -89,8 +98,8 @@ Built to:  dist/images
 
 Only images that have been modified will ever get re-optimized.
 
-`grunt` will watch the images directory
-`grunt images` will manually minify all new images
+* `grunt` will watch the images directory
+* `grunt images` will manually minify all new images
 
 ## Base Icon Fonts
 
@@ -110,7 +119,7 @@ site-start uses 3 package managers to manage dependencies:
 * Bower
 * NPM
 
-After adding any packages, run:
+After adding any packages, run this to install them:
 ```
 bin/install
 ```
