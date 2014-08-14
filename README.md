@@ -1,4 +1,4 @@
-site-start
+site-start [![Dependency Status](https://gemnasium.com/Staplegun-US/site-start.svg)](https://gemnasium.com/Staplegun-US/site-start)
 ==========
 
 A starter site kit that includes:
