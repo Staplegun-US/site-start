@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "underscore": "~1.6.0",
-    "jquery": "~1.11",
+    "jquery": "~1.11.1",
     "modernizr": "~2.8.3",
-    "normalize-scss": "~3.0.*"
+    "normalize-scss": "~3.0.1"
   }
 }
