@@ -16,13 +16,6 @@ module.exports = function (grunt) {
           }
         },
         browserify : {
-          vendor : {
-            src : [
-              'vendor/bower_components/jquery/js/jquery.min.js',
-              'vendor/bower_components/underscore/js/underscore.js',
-            ],
-            dest : 'build/vendor.js'
-          },
           app : {
             files : {
               'build/app.js' : ['src/js/app.js']
@@ -45,7 +38,7 @@ module.exports = function (grunt) {
             },
             app: {
               files: {
-                'dist/js/app.js': [ 'build/vendor.js', 'build/app.js' ],
+                'dist/js/app.js': [ 'build/app.js' ],
               },
             },
             beforeBody: {
