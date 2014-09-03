@@ -18,6 +18,7 @@ A starter site kit that includes:
   * Pagespeed Analytics
   * Watching for changes
 * Common icon fonts pre-installed
+* Semantic index HTML file using proper [ARIA](http://w3c.github.io/aria-in-html) roles and settings
 * 404 Page (from HTML5 Boilerplate)
 * Default root settings files (robots.txt, humans.txt, crossdomain.xml, .editorconfig,
   .htaccess)
