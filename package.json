@@ -1,6 +1,6 @@
 {
   "name": "site-start",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Staplegun.US",
   "descripton": "A Boilerplate starter-kit for starting development right - the Staplegun way. Includes build automation and common CSS and JS libraries",
   "homepage": "https://github.com/Staplegun-US/site-start",
@@ -30,12 +30,12 @@
       "grunt-contrib-watch": "~0.6.1",
       "grunt-contrib-sass": "~0.8.1",
       "grunt-contrib-imagemin": "~0.9.1",
-      "grunt-newer": "~0.7.0",
+      "grunt-newer": "~0.8.0",
       "grunt-bower-task": "~0.4.0",
-      "grunt-browserify": "~3.0.0",
+      "grunt-browserify": "~3.2.1",
       "grunt-pagespeed": "~0.3.0",
       "grunt-concurrent": "~1.0.0",
-      "browserify": "~6.2.0",
+      "browserify": "~6.3.3",
       "browserify-shim": "~3.8.0",
       "ngrok": "~0.1.97"
   },
