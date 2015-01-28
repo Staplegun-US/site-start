@@ -56,7 +56,7 @@ module.exports = function (grunt) {
                     style: 'compressed',
                     bundleExec: true,
                     compass: true,
-                    sourcemap: false,
+                    sourcemap: 'none',
                     lineNumbers: true,
                     require: ['susy']
                 },
