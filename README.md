@@ -54,7 +54,6 @@ Grunt Commands
 ```bash
 grunt           # Default command to build everything and watch for changes
 grunt images    # Optimize all new images
-grunt init      # Install Bower Components
 grunt analyze   # Run pagespeed analytics
 ```
 
