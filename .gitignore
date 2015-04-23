@@ -18,4 +18,3 @@ vendor/bundle/
 bin/bundle/
 vendor/bower_components/
 tmp/
-.bundle/
