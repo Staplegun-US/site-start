@@ -143,7 +143,7 @@ bin/bundle/[command-name]
 #### Bower Components
 
 * File to update when adding package: `bower.json`
-* Packages get built to: `vendor/bower_components/`
+* Packages get built to: `bower_components/`
 
 #### Node Packages
 

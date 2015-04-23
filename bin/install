@@ -15,5 +15,5 @@ printf "\n\n$(tput setaf 6)...DONE!$(tput sgr 0)";
 # Install Bower Components
 printf "\n\n$(tput setaf 6)Installing Bower Components...$(tput sgr 0)\n\n";
 sleep 1;
-grunt init;
+bower install;
 printf "\n\n$(tput setaf 6)...DONE!$(tput sgr 0)";

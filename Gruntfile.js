@@ -5,16 +5,6 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        bower : {
-          install : {
-            options : {
-              targetDir : 'vendor/bower_components',
-              layout : 'byComponent',
-              verbose: true,
-              cleanup: true
-            }
-          }
-        },
         browserify : {
           app : {
             files : {
@@ -142,7 +132,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-pagespeed');
     grunt.loadNpmTasks('grunt-concurrent');
@@ -155,7 +144,6 @@ module.exports = function (grunt) {
       'watch'
     ]);
 
-    grunt.registerTask( 'init',     [ 'bower:install'] );
     grunt.registerTask( 'images',   [ 'newer:imagemin'] );
     grunt.registerTask( 'analyze',  [ 'ngrok-pagespeed'] );
 };
