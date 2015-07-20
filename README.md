@@ -1,6 +1,8 @@
 site-start [![Dependency Status](https://gemnasium.com/Staplegun-US/site-start.svg)](https://gemnasium.com/Staplegun-US/site-start)
 ==========
 
+By [Staplegun Design](http://staplegun.us)
+
 A starter site kit that includes:
 
 * Common vendor scripts
@@ -12,7 +14,7 @@ A starter site kit that includes:
   * Modernizr
 * Build Automation (via Grunt.js)
   * SASS compilation
-  * Javascript built with Browserify
+  * Javascript built with [Browserify](http://browserify.org/)
   * Automatic CSS/JS minification
   * Image optimization
   * Pagespeed Analytics
@@ -48,42 +50,75 @@ The `index.html` comes preset with google analytics code,
 css/js file inclusions, base meta settings, and a basic semantic body to get you started. To make full
 use of the site-start though, you'll want to use grunt.
 
+## Running in Development
+
+```
+grunt         # This will build your assets and watch for changes
+
+# Then pull up your server of choice to run your app
+```
+
+
+## Deploying to Production
+
+```
+grunt build   # This will build all your assets for production
+git push      # Push it up somewhere
+```
+
+**NOTE:** Be sure to run `grunt build` before pushing to production
+
 ## Build Automation with Grunt.js
 
 Grunt Commands
 ```bash
 grunt           # Default command to build everything and watch for changes
+grunt build     # Minimizes all assets for production (js, sass, images)
 grunt images    # Optimize all new images
 grunt analyze   # Run pagespeed analytics
 ```
 
 #### Sass
-There is a main scss file which site-start uses to build your CSS. Use it to
-centralize your imports.
+Any .scss file you put in the root of the `src/sass` directory will get built to
+`dist/css`. Ideally you would centralize your imports in these files.
+
+By default, site-start ships with a main scss file for you.
 
 ```
 src/sass/app.scss       # Main Sass, included in the body
 
-Built to: dist/css
+Built to: dist/css/app.css
 ```
 
+
 #### Javascript
-There are 3 main javascript files which site-start uses to build your JS.
+Any .js file you put in the root of the `src/js` directory will get built to
+`dist/css`. The build process includes [browserify](http://browserify.org/) and uglification. Ideally you
+would centralize your requires in these files and keep any additional logic
+pretty short (so these files don't get length).
+
+By default, site-start ships with 4 main javascript files:
 
 ```
 src/js/app.js           # Main JS File, included in the body
+src/js/vendor.js        # JS file for all vendor scripts (jQuery, underscore, etc.)
 src/js/beforeBody.js    # Included in the head
 src/js/ie/app.js        # JS file for IE8
 
 Built to: dist/js
 ```
 
-All of these files use Node.js-style `require()` calls to include files, which
-allows you to include external scripts inside these JS files. These files get
-built and bundled with Browserify.
+Grunt will watch for changes in all the following files, and recompile after any changes:
 
-Grunt will watch for all scss and js files in their respective directories, and
-recompile after any changes.
+```
+src/sass/*.scss
+src/sass/**/*.scss
+src/sass/partials/**/*.scss
+src/js/app.js
+src/js/lib/*.js
+```
+
+These are the main files you will modify during development. To build any other files (such as vendor js files), run `grunt build`.
 
 All of the final result files that Grunt compiles for you are already
 included in the `index.html`, so hack away without worry!
