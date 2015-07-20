@@ -8,10 +8,13 @@
 // Bower packages
 @import "../../bower_components/normalize-scss/normalize";
 
-// Base Icon Fonts
-@import "partials/base-icon-fonts";
+// Vendor
 
-// Custom stylesheets
+// Modules
+@import "modules/utilities";
+@import "modules/variables";
+
+// Partials
+@import "partials/base-icon-fonts";
 @import "partials/defaults";
-@import "partials/utilities";
-@import "partials/screen";
+@import "partials/susy";
