@@ -18,6 +18,7 @@ A starter site kit that includes:
   * Automatic CSS/JS minification
   * Image optimization
   * Watching for changes
+  * Server for static site projects
 * Common icon fonts pre-installed
 * Semantic index HTML file using proper [ARIA](http://w3c.github.io/aria-in-html) roles and settings
 * 404 Page (from HTML5 Boilerplate)
@@ -54,7 +55,14 @@ use of the site-start though, you'll want to use grunt.
 ```
 grunt         # This will build your assets and watch for changes
 
-# Then pull up your server of choice to run your app
+# In a new terminal pane:
+grunt server
+
+# Now navigate to http://localhost:8000
+
+# For Dynamic Web Projects:
+# site-start is fully compatible with dynamic web projects (e.g. with PHP), but
+# you'll need to use a different server other than the one site-start ships with.
 ```
 
 
