@@ -8,13 +8,10 @@ venv
 .Trashes
 *.pyc
 .idea
-node_modules/
-bower_components/
-build/
-*.map
+bin/bundle
 
 Gemfile.lock
 vendor/bundle/
-bin/bundle/
-vendor/bower_components/
+node_modules/
+bower_components/
 tmp/
