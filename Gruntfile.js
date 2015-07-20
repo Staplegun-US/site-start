@@ -23,7 +23,7 @@ module.exports = function (grunt) {
           },
           ie : {
             files : {
-              'dist/js/app.ie.js' : ['src/js/ie/app.js']
+              'dist/js/ie.js' : ['src/js/ie.js']
             }
           }
         },
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
               },
             },
             ie: {
-              files: { 'dist/js/app.ie.js': [ 'dist/js/app.ie.js' ] },
+              files: { 'dist/js/ie.js': [ 'dist/js/ie.js' ] },
             }
         },
         sass: {
