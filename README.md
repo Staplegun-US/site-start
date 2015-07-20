@@ -73,7 +73,7 @@ git push      # Push it up somewhere
 Grunt Commands
 ```bash
 grunt           # Default command to build everything and watch for changes
-grunt build     # Minimizes all assets for production (js, sass, images)
+grunt build     # Minimize all assets for production (js, sass, images)
 grunt images    # Optimize all new images
 grunt analyze   # Run pagespeed analytics
 ```
@@ -93,7 +93,7 @@ Built to: dist/css/app.css
 
 #### Javascript
 Any .js file you put in the root of the `src/js` directory will get built to
-`dist/css`. The build process includes [browserify](http://browserify.org/) and uglification. Ideally you
+`dist/js`. The build process includes [browserify](http://browserify.org/) and uglification. Ideally you
 would centralize your requires in these files and keep any additional logic
 pretty short (so these files don't get length).
 
@@ -103,12 +103,12 @@ By default, site-start ships with 4 main javascript files:
 src/js/app.js           # Main JS File, included in the body
 src/js/vendor.js        # JS file for all vendor scripts (jQuery, underscore, etc.)
 src/js/beforeBody.js    # Included in the head
-src/js/ie/app.js        # JS file for IE8
+src/js/ie.js            # JS file for IE8
 
 Built to: dist/js
 ```
 
-Grunt will watch for changes in all the following files, and recompile after any changes:
+With the default grunt task running, grunt will watch for changes in all the following files, and recompile after any changes:
 
 ```
 src/sass/*.scss
@@ -118,7 +118,7 @@ src/js/app.js
 src/js/lib/*.js
 ```
 
-These are the main files you will modify during development. To build any other files (such as vendor js files), run `grunt build`.
+These are the main files you will modify during development. To build any other files (such as vendor .js files), run `grunt build`.
 
 All of the final result files that Grunt compiles for you are already
 included in the `index.html`, so hack away without worry!
