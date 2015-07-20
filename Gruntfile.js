@@ -28,27 +28,17 @@ module.exports = function (grunt) {
           }
         },
         uglify: {
-            options: {
-              sourceMap: true
-            },
-            app: {
-              files: {
-                'dist/js/app.js': [ 'dist/js/app.js' ],
-              },
-            },
-            beforeBody: {
-              files: {
-                'dist/js/beforeBody.js': [ 'dist/js/beforeBody.js' ],
-              },
-            },
-            vendor: {
-              files: {
-                'dist/js/vendor.js': [ 'dist/js/vendor.js' ],
-              },
-            },
-            ie: {
-              files: { 'dist/js/ie.js': [ 'dist/js/ie.js' ] },
-            }
+          options: {
+            sourceMap: true
+          },
+          all: {
+            files: [{
+              expand: true,
+              cwd: 'dist/js/',
+              src: ['*.js'],
+              dest: 'dist/js/'
+            }]
+          }
         },
         sass: {
             dist: {
