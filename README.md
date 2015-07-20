@@ -52,7 +52,7 @@ use of the site-start though, you'll want to use grunt.
 
 ## Running in Development
 
-```
+```bash
 grunt         # This will build your assets and watch for changes
 
 # In a new terminal pane:
@@ -68,7 +68,7 @@ grunt server
 
 ## Deploying to Production
 
-```
+```bash
 grunt build   # This will build all your assets for production
 git push      # Push it up somewhere
 ```
@@ -90,7 +90,7 @@ Any .scss file you put in the root of the `src/sass` directory will get built to
 
 By default, site-start ships with a main scss file for you.
 
-```
+```bash
 src/sass/app.scss       # Main Sass, included in the body
 
 Built to: dist/css/app.css
@@ -105,7 +105,7 @@ pretty short (so these files don't get length).
 
 By default, site-start ships with 4 main javascript files:
 
-```
+```bash
 src/js/app.js           # Main JS File, included in the body
 src/js/vendor.js        # JS file for all vendor scripts (jQuery, underscore, etc.)
 src/js/beforeBody.js    # Included in the head
@@ -161,7 +161,7 @@ site-start uses 3 package managers to manage dependencies:
 * NPM
 
 After adding any packages, run this to install/update them:
-```
+```bash
 bin/install
 ```
 
