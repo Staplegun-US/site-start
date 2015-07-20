@@ -1,5 +1,3 @@
-var ngrok = require('ngrok');
-
 module.exports = function (grunt) {
 
     // Project configuration.
@@ -62,25 +60,6 @@ module.exports = function (grunt) {
             }]
           }
         },
-        pagespeed: {
-          options: {
-            nokey: true
-          },
-          desktop: {
-            options: {
-              strategy: "desktop",
-              locale: "en",
-              threshold: 80
-            }
-          },
-          mobile: {
-            options: {
-              strategy: "mobile",
-              locale: "en",
-              threshold: 80
-            }
-          }
-        },
         watch: {
             options: {
               livereload: true
@@ -100,32 +79,14 @@ module.exports = function (grunt) {
         },
     });
 
-    // Register task for ngrok-pagespeed
-    grunt.registerTask('ngrok-pagespeed', 'Run pagespeed with ngrok', function() {
-      var done = this.async();
-      var port = 8000;
-
-      ngrok.connect(port, function(err, url) {
-        if (err !== null) {
-          grunt.fail.fatal(err);
-          return done();
-        }
-        grunt.config.set('pagespeed.options.url', url);
-        grunt.task.run('pagespeed');
-        done();
-      });
-    });
-
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-browserify');
-    grunt.loadNpmTasks('grunt-pagespeed');
 
-    grunt.registerTask( 'images',   [ 'newer:imagemin'] );
-    grunt.registerTask( 'analyze',  [ 'ngrok-pagespeed'] );
+    grunt.registerTask( 'images', [ 'newer:imagemin'] );
 
     grunt.registerTask('build', [
       'browserify:dist',

@@ -17,7 +17,6 @@ A starter site kit that includes:
   * Javascript built with [Browserify](http://browserify.org/)
   * Automatic CSS/JS minification
   * Image optimization
-  * Pagespeed Analytics
   * Watching for changes
 * Common icon fonts pre-installed
 * Semantic index HTML file using proper [ARIA](http://w3c.github.io/aria-in-html) roles and settings
@@ -75,7 +74,6 @@ Grunt Commands
 grunt           # Default command to build everything and watch for changes
 grunt build     # Minimize all assets for production (js, sass, images)
 grunt images    # Optimize all new images
-grunt analyze   # Run pagespeed analytics
 ```
 
 #### Sass
