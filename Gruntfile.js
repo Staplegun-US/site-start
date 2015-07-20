@@ -11,27 +11,20 @@ module.exports = function (grunt) {
               'dist/js/app.js' : ['src/js/app.js']
             }
           },
-          beforeBody : {
-            files: {
-              'dist/js/beforeBody.js' : ['src/js/beforeBody.js']
-            }
-          },
-          vendor : {
-            files: {
-              'dist/js/vendor.js' : ['src/js/vendor.js']
-            }
-          },
-          ie : {
-            files : {
-              'dist/js/ie.js' : ['src/js/ie.js']
-            }
+          dist: {
+            files: [{
+              expand: true,
+              cwd: 'src/js/',
+              src: ['*.js'],
+              dest: 'dist/js/'
+            }]
           }
         },
         uglify: {
           options: {
             sourceMap: true
           },
-          all: {
+          dist: {
             files: [{
               expand: true,
               cwd: 'dist/js/',
@@ -42,21 +35,21 @@ module.exports = function (grunt) {
         },
         sass: {
             dist: {
-                options: {
-                  style: 'compressed',
-                  bundleExec: true,
-                  compass: true,
-                  sourcemap: 'none',
-                  lineNumbers: true,
-                  require: ['susy']
-                },
-                files: [{
-                  expand: true,
-                  cwd: 'src/sass/',
-                  src: ['*.scss'],
-                  ext: ['.css'],
-                  dest: 'dist/css/'
-                }]
+              options: {
+                style: 'compressed',
+                bundleExec: true,
+                compass: true,
+                sourcemap: 'none',
+                lineNumbers: true,
+                require: ['susy']
+              },
+              files: [{
+                expand: true,
+                cwd: 'src/sass/',
+                src: ['*.scss'],
+                ext: ['.css'],
+                dest: 'dist/css/'
+              }]
             }
         },
         imagemin: {
@@ -135,9 +128,9 @@ module.exports = function (grunt) {
     grunt.registerTask( 'analyze',  [ 'ngrok-pagespeed'] );
 
     grunt.registerTask('build', [
-      'browserify',
-      'uglify',
-      'sass',
+      'browserify:dist',
+      'uglify:dist',
+      'sass:dist',
       'images',
     ]);
 
