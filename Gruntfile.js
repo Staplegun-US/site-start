@@ -8,17 +8,22 @@ module.exports = function (grunt) {
         browserify : {
           app : {
             files : {
-              'build/app.js' : ['src/js/app.js']
+              'dist/js/app.js' : ['src/js/app.js']
             }
           },
           beforeBody : {
             files: {
-              'build/beforeBody.js' : ['src/js/beforeBody.js']
+              'dist/js/beforeBody.js' : ['src/js/beforeBody.js']
+            }
+          },
+          vendor : {
+            files: {
+              'dist/js/vendor.js' : ['src/js/vendor.js']
             }
           },
           ie : {
             files : {
-              'build/app.ie.js' : ['src/js/ie/app.js']
+              'dist/js/app.ie.js' : ['src/js/ie/app.js']
             }
           }
         },
@@ -28,31 +33,40 @@ module.exports = function (grunt) {
             },
             app: {
               files: {
-                'dist/js/app.js': [ 'build/app.js' ],
+                'dist/js/app.js': [ 'dist/js/app.js' ],
               },
             },
             beforeBody: {
               files: {
-                'dist/js/beforeBody.js': [ 'build/beforeBody.js' ],
+                'dist/js/beforeBody.js': [ 'dist/js/beforeBody.js' ],
+              },
+            },
+            vendor: {
+              files: {
+                'dist/js/vendor.js': [ 'dist/js/vendor.js' ],
               },
             },
             ie: {
-              files: { 'dist/js/app.ie.js': [ 'build/app.ie.js' ] },
+              files: { 'dist/js/app.ie.js': [ 'dist/js/app.ie.js' ] },
             }
         },
         sass: {
             dist: {
                 options: {
-                    style: 'compressed',
-                    bundleExec: true,
-                    compass: true,
-                    sourcemap: 'none',
-                    lineNumbers: true,
-                    require: ['susy']
+                  style: 'compressed',
+                  bundleExec: true,
+                  compass: true,
+                  sourcemap: 'none',
+                  lineNumbers: true,
+                  require: ['susy']
                 },
-                files: {
-                    'dist/css/app.css': [ 'src/sass/app.scss' ]
-                }
+                files: [{
+                  expand: true,
+                  cwd: 'src/sass/',
+                  src: ['*.scss'],
+                  ext: ['.css'],
+                  dest: 'dist/css/'
+                }]
             }
         },
         imagemin: {
@@ -84,30 +98,22 @@ module.exports = function (grunt) {
             }
           }
         },
-        concurrent: {
-          browserify: [ 'browserify:app', 'browserify:beforeBody' ],
-          uglify:     [ 'uglify:app', 'uglify:beforeBody' ],
-        },
         watch: {
             options: {
               livereload: true
             },
             sass: {
-              files: [ 'src/sass/*.scss', 'src/sass/**/*.scss' ],
+              files: [ 'src/sass/*.scss', 'src/sass/**/*.scss', 'src/sass/partials/**/*.scss' ],
               tasks: [ 'sass' ]
             },
             images: {
               files: [ 'src/images/*' ],
               tasks: [ 'newer:imagemin' ]
             },
-            uglify_dist: {
-              files: [ 'src/js/*.js' ],
-              tasks: [ 'concurrent:browserify', 'concurrent:uglify' ]
+            browserify_dev: {
+              files: [ 'src/js/app.js', 'src/js/lib/*.js' ],
+              tasks: [ 'browserify:app' ]
             },
-            uglify_ie: {
-              files: [ 'src/js/ie/*.js' ],
-              tasks: [ 'browserify:ie', 'uglify:ie' ]
-            }
         },
     });
 
@@ -134,16 +140,19 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-pagespeed');
-    grunt.loadNpmTasks('grunt-concurrent');
-
-    // Default task(s).
-    grunt.registerTask('default', [
-      'browserify',
-      'uglify',
-      'sass',
-      'watch'
-    ]);
 
     grunt.registerTask( 'images',   [ 'newer:imagemin'] );
     grunt.registerTask( 'analyze',  [ 'ngrok-pagespeed'] );
+
+    grunt.registerTask('build', [
+      'browserify',
+      'uglify',
+      'sass',
+      'images',
+    ]);
+
+    grunt.registerTask('default',   [
+      'build',
+      'watch'
+    ]);
 };
