@@ -3,6 +3,14 @@ module.exports = function (grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        connect: {
+          server: {
+            options: {
+              port: 8000,
+              keepalive: true
+            }
+          }
+        },
         browserify : {
           app : {
             files : {
@@ -79,12 +87,13 @@ module.exports = function (grunt) {
         },
     });
 
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask( 'images', [ 'newer:imagemin'] );
 
@@ -94,6 +103,8 @@ module.exports = function (grunt) {
       'sass:dist',
       'images',
     ]);
+
+    grunt.registerTask('server', ['connect:server']);
 
     grunt.registerTask('default',   [
       'build',
