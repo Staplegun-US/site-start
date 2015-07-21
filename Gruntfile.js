@@ -47,7 +47,7 @@ module.exports = function (grunt) {
                 compass: true,
                 sourcemap: 'none',
                 lineNumbers: true,
-                require: ['susy']
+                require: ['susy', 'breakpoint']
               },
               files: [{
                 expand: true,
