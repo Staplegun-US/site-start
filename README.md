@@ -114,13 +114,15 @@ src/js/ie.js            # JS file for IE8
 Built to: dist/js
 ```
 
+---
+
 With the default grunt task running, grunt will watch for changes in all the following files, and recompile after any changes:
 
 ```
 src/sass/*.scss
 src/sass/**/*.scss
 src/sass/partials/**/*.scss
-src/js/app.js
+src/js/*.js
 src/js/lib/*.js
 ```
 
