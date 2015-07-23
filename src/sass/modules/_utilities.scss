@@ -42,3 +42,17 @@
     height:100%;
   }
 }
+
+// e.g.
+// @include ie_translucent_background(#ffffff, 'CC');
+@mixin ie_translucent_background($color, $opacity){
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=##{$opacity}#{drop-hex-hash($color)},endColorstr=##{$opacity}#{drop-hex-hash($color)});
+}
+
+// Private functions
+
+@function drop-hex-hash($string) {
+  $string: inspect($string);
+  $string: str-slice($string, 2, str-length($string));
+  @return $string;
+}
