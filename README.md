@@ -154,6 +154,45 @@ in `dist/fonts/base-icon-fonts/demo.html`. Include them by adding a
 <i class="base-icon-facebook"></i>
 ```
 
+List of all Icon Fonts
+
+| Icon Name     | Handle                      |
+| ------------- |-----------------------------|
+| Untappd       | `.base-icon-untappd`        |
+| Home          | `.base-icon-home`           |
+| Phone         | `.base-icon-phone`          |
+| Location      | `.base-icon-location`       |
+| Search        | `.base-icon-search`         |
+| Menu          | `.base-icon-menu`           |
+| Close         | `.base-icon-close`          |
+| Checkmark     | `.base-icon-checkmark`      |
+| Play2         | `.base-icon-play2`          |
+| Play          | `.base-icon-play`           |
+| Pause         | `.base-icon-pause`          |
+| Stop          | `.base-icon-stop`           |
+| Facebook      | `.base-icon-facebook`       |
+| Twitter       | `.base-icon-twitter`        |
+| Feed          | `.base-icon-feed`           |
+| Youtube       | `.base-icon-youtube`        |
+| Vimeo         | `.base-icon-vimeo`          |
+| Flickr        | `.base-icon-flickr`         |
+| Github        | `.base-icon-github`         |
+| Tumblr        | `.base-icon-tumblr`         |
+| Skype         | `.base-icon-skype`          |
+| Reddit        | `.base-icon-reddit`         |
+| Pinterest     | `.base-icon-pinterest`      |
+| File-pdf      | `.base-icon-file-pdf`       |
+| Search-plus   | `.base-icon-search-plus`    |
+| Search-minus  | `.base-icon-search-minus`   |
+| Chevron-left  | `.base-icon-chevron-left`   |
+| Chevron-right | `.base-icon-chevron-right`  |
+| Chevron-up    | `.base-icon-chevron-up`     |
+| Chevron-down  | `.base-icon-chevron-down`   |
+| Google-plus   | `.base-icon-google-plus`    |
+| Envelope      | `.base-icon-envelope`       |
+| Linkedin      | `.base-icon-linkedin`       |
+| Instagram     | `.base-icon-instagram`      |
+
 ## Package Managers
 
 site-start uses 3 package managers to manage dependencies:
