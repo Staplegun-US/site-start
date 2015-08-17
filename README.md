@@ -37,10 +37,10 @@ To use everything site-start ships with, you must have the following installed:
 ```bash
 git clone https://github.com/Staplegun-US/site-start.git
 cd site-start
-bin/install
+make install
 ```
 
-Running `bin/install` will take care of installing the necessary gems, bower
+Running `make install` will take care of installing the necessary gems, bower
 components, and node packages you'll need. Packages are only installed on a
 local project-level, not globally.
 
@@ -203,7 +203,7 @@ site-start uses 3 package managers to manage dependencies:
 
 After adding any packages, run this to install/update them:
 ```bash
-bin/install
+make install
 ```
 
 #### Ruby Gems
