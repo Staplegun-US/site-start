@@ -2,12 +2,18 @@ var gulp = require('gulp');
 
 var sass    = require('gulp-sass');
 var prefix  = require('gulp-autoprefixer');
+var uglify  = require('gulp-uglify');
+
 
 var paths = {
   styles: {
     src: './src/sass',
     files: './src/sass/**/*.scss',
     dest: './dist/css'
+  },
+  js: {
+    files: './src/js/*.js',
+    dest: './dist/js'
   }
 }
 
@@ -37,6 +43,13 @@ gulp.task('sass', function (){
     .pipe(gulp.dest(paths.styles.dest))
 });
 
-gulp.task('default', ['sass'], function() {
-  gulp.watch(paths.styles.files, ['sass'])
+gulp.task('uglify', function() {
+  return gulp.src(paths.js.files)
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.js.dest));
+});
+
+gulp.task('default', ['sass', 'uglify'], function() {
+  gulp.watch(paths.styles.files,  ['sass']);
+  gulp.watch(paths.js.files,      ['uglify']);
 });
