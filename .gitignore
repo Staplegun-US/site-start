@@ -8,10 +8,7 @@ venv
 .Trashes
 *.pyc
 .idea
-bin/bundle
 
-Gemfile.lock
-vendor/bundle/
 node_modules/
 bower_components/
 tmp/
