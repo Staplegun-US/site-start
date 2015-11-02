@@ -6,15 +6,12 @@ By [Staplegun Design](http://staplegun.us)
 A starter site kit that includes:
 
 * Common vendor scripts
-  * Compass
   * Susy 2
   * Normalize.css
   * jQuery
-  * Underscore.js
   * Modernizr
-* Build Automation (via Grunt.js)
+* Build Automation (via gulp.js)
   * SASS compilation
-  * Javascript built with [Browserify](http://browserify.org/)
   * Automatic CSS/JS minification
   * Image optimization
   * Watching for changes
@@ -29,7 +26,6 @@ A starter site kit that includes:
 
 To use everything site-start ships with, you must have the following installed:
 
-  * Ruby
   * NPM
   * Bower
 
@@ -48,15 +44,15 @@ local project-level, not globally.
 
 The `index.html` comes preset with google analytics code,
 css/js file inclusions, base meta settings, and a basic semantic body to get you started. To make full
-use of the site-start though, you'll want to use grunt.
+use of the site-start though, you'll want to use gulp.
 
 ## Running in Development
 
 ```bash
-grunt         # This will build your assets and watch for changes
+gulp         # This will build your assets and watch for changes
 
 # In a new terminal pane:
-grunt server
+gulp server
 
 # Now navigate to http://localhost:8000
 
@@ -65,23 +61,13 @@ grunt server
 # you'll need to use a different server other than the one site-start ships with.
 ```
 
+## Build Automation with gulp.js
 
-## Deploying to Production
-
+gulp Commands
 ```bash
-grunt build   # This will build all your assets for production
-git push      # Push it up somewhere
-```
-
-**NOTE:** Be sure to run `grunt build` before pushing to production
-
-## Build Automation with Grunt.js
-
-Grunt Commands
-```bash
-grunt           # Default command to build everything and watch for changes
-grunt build     # Minimize all assets for production (js, sass, images)
-grunt images    # Optimize all new images
+gulp           # Default command to build everything and watch for changes
+gulp images    # Optimize all new images
+gulp server    # Static server on port 8000
 ```
 
 #### Sass
@@ -99,50 +85,36 @@ Built to: dist/css/app.css
 
 #### Javascript
 Any .js file you put in the root of the `src/js` directory will get built to
-`dist/js`. The build process includes [browserify](http://browserify.org/) and uglification. Ideally you
-would centralize your requires in these files and keep any additional logic
-pretty short (so these files don't get length).
+`dist/js`
 
-By default, site-start ships with 4 main javascript files:
+By default, site-start ships with a main js file for you.
 
 ```bash
 src/js/app.js           # Main JS File, included in the body
-src/js/vendor.js        # JS file for all vendor scripts (jQuery, underscore, etc.)
-src/js/beforeBody.js    # Included in the head
-src/js/ie.js            # JS file for IE8
 
 Built to: dist/js
 ```
 
 ---
 
-With the default grunt task running, grunt will watch for changes in all the following files, and recompile after any changes:
+With the default gulp task running, gulp will watch for changes in all the following files, and recompile after any changes:
 
 ```
-src/sass/*.scss
 src/sass/**/*.scss
-src/sass/partials/**/*.scss
 src/js/*.js
-src/js/lib/*.js
 ```
-
-These are the main files you will modify during development. To build any other files (such as vendor .js files), run `grunt build`.
-
-All of the final result files that Grunt compiles for you are already
-included in the `index.html`, so hack away without worry!
 
 #### Images
-Grunt automatically optimizes your images, and keeps unoptimized backups.
+To optimize images:
 
 ```
+gulp images
+
 Place in:  src/images
 Built to:  dist/images
 ```
 
 Only images that have been modified will ever get re-optimized.
-
-* `grunt` will watch the images directory
-* `grunt images` will manually minify all new images
 
 ## Base Icon Fonts
 
@@ -195,41 +167,12 @@ List of all Icon Fonts
 
 ## Package Managers
 
-site-start uses 3 package managers to manage dependencies:
-
-* Ruby Gems
-* Bower
-* NPM
+site-start uses Node and Bower to manage dependencies:
 
 After adding any packages, run this to install/update them:
 ```bash
 make install
 ```
-
-#### Ruby Gems
-
-* File to update when adding package: `Gemfile`
-* Packages get built to: `vendor/bundle/`
-
-Some gems will include new executable commands, which can be run as follows:
-
-```bash
-bundle exec [command-name]
-
--or-
-
-bin/bundle/[command-name]
-```
-
-#### Bower Components
-
-* File to update when adding package: `bower.json`
-* Packages get built to: `bower_components/`
-
-#### Node Packages
-
-* File to update when adding package: `package.json`
-* Packages get built to: `node_modules/`
 
 ## License
 
