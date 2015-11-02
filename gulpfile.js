@@ -1,10 +1,10 @@
-var gulp = require('gulp');
-
-var sass      = require('gulp-sass');
-var prefix    = require('gulp-autoprefixer');
-var uglify    = require('gulp-uglify');
-var imagemin  = require('gulp-imagemin');
-var newer     = require('gulp-newer');
+var gulp        = require('gulp');
+var sass        = require('gulp-sass');
+var prefix      = require('gulp-autoprefixer');
+var uglify      = require('gulp-uglify');
+var imagemin    = require('gulp-imagemin');
+var newer       = require('gulp-newer');
+var livereload  = require('gulp-livereload');
 
 var paths = {
   styles: {
@@ -33,7 +33,7 @@ var displayError = function(error) {
 }
 
 gulp.task('sass', function (){
-    return gulp.src(paths.styles.files)
+  return gulp.src(paths.styles.files)
     .pipe(sass({
         outputStyle: 'compressed',
         sourceComments: 'map',
@@ -46,6 +46,7 @@ gulp.task('sass', function (){
         'last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'
     ))
     .pipe(gulp.dest(paths.styles.dest))
+    .pipe(livereload());
 });
 
 gulp.task('images', function(){
@@ -58,10 +59,12 @@ gulp.task('images', function(){
 gulp.task('uglify', function() {
   return gulp.src(paths.js.files)
     .pipe(uglify())
-    .pipe(gulp.dest(paths.js.dest));
+    .pipe(gulp.dest(paths.js.dest))
+    .pipe(livereload());
 });
 
 gulp.task('default', ['sass', 'uglify', 'images'], function() {
+  livereload.listen();
   gulp.watch(paths.styles.files,  ['sass']);
   gulp.watch(paths.js.files,      ['uglify']);
 });
