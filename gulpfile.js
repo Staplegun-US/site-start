@@ -1,9 +1,10 @@
 var gulp = require('gulp');
 
-var sass    = require('gulp-sass');
-var prefix  = require('gulp-autoprefixer');
-var uglify  = require('gulp-uglify');
-
+var sass      = require('gulp-sass');
+var prefix    = require('gulp-autoprefixer');
+var uglify    = require('gulp-uglify');
+var imagemin  = require('gulp-imagemin');
+var newer     = require('gulp-newer');
 
 var paths = {
   styles: {
@@ -14,6 +15,10 @@ var paths = {
   js: {
     files: './src/js/*.js',
     dest: './dist/js'
+  },
+  images: {
+    src: './src/images/**',
+    dest: './dist/images'
   }
 }
 
@@ -28,7 +33,7 @@ var displayError = function(error) {
 }
 
 gulp.task('sass', function (){
-    gulp.src(paths.styles.files)
+    return gulp.src(paths.styles.files)
     .pipe(sass({
         outputStyle: 'compressed',
         sourceComments: 'map',
@@ -43,13 +48,20 @@ gulp.task('sass', function (){
     .pipe(gulp.dest(paths.styles.dest))
 });
 
+gulp.task('images', function(){
+  return gulp.src(paths.images.src)
+    .pipe(newer(paths.images.dest))
+    .pipe(imagemin())
+    .pipe(gulp.dest(paths.images.dest));
+});
+
 gulp.task('uglify', function() {
   return gulp.src(paths.js.files)
     .pipe(uglify())
     .pipe(gulp.dest(paths.js.dest));
 });
 
-gulp.task('default', ['sass', 'uglify'], function() {
+gulp.task('default', ['sass', 'uglify', 'images'], function() {
   gulp.watch(paths.styles.files,  ['sass']);
   gulp.watch(paths.js.files,      ['uglify']);
 });
