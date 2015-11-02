@@ -5,6 +5,7 @@ var uglify      = require('gulp-uglify');
 var imagemin    = require('gulp-imagemin');
 var newer       = require('gulp-newer');
 var livereload  = require('gulp-livereload');
+var webserver   = require('gulp-webserver');
 
 var paths = {
   styles: {
@@ -61,6 +62,14 @@ gulp.task('uglify', function() {
     .pipe(uglify())
     .pipe(gulp.dest(paths.js.dest))
     .pipe(livereload());
+});
+
+gulp.task('server', function() {
+  gulp.src('.')
+    .pipe(webserver({
+      open: true,
+      livereload: true
+    }));
 });
 
 gulp.task('default', ['sass', 'uglify', 'images'], function() {
