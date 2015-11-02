@@ -1,15 +1,9 @@
 // Main App SCSS File
 // Centralize your imports here
 
-// Ruby gems
-@import "compass";
-@import "susy";
-@import "breakpoint";
-
 // Bower packages
 @import "../../bower_components/normalize-scss/normalize";
-
-// Vendor
+@import "../../bower_components/susy/sass/susy";
 
 // Modules
 @import "modules/utilities";
@@ -18,4 +12,4 @@
 // Partials
 @import "partials/base-icon-fonts";
 @import "partials/defaults";
-@import "partials/susy";
+@import "partials/layout";
