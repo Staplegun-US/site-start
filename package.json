@@ -4,21 +4,22 @@
   "author": "Staplegun.US",
   "descripton": "A Boilerplate starter-kit for starting development right - the Staplegun way. Includes build automation and common CSS and JS libraries",
   "homepage": "https://github.com/Staplegun-US/site-start",
-  "repository" : {
-    "type"  : "git",
-    "url"   : "https://github.com/Staplegun-US/site-start"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Staplegun-US/site-start"
   },
   "bugs": {
     "url": "https://github.com/Staplegun-US/site-start/issues"
   },
   "devDependencies": {
     "gulp": "3.9.0",
-    "gulp-sass": "2.1.0",
     "gulp-autoprefixer": "3.1.0",
-    "gulp-uglify": "1.4.2",
     "gulp-imagemin": "2.4.0",
-    "gulp-newer": "1.0.0",
     "gulp-livereload": "3.8.1",
+    "gulp-newer": "1.0.0",
+    "gulp-sass": "2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "1.4.2",
     "gulp-webserver": "0.9.1"
   },
   "private": "true",

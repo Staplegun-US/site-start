@@ -1,11 +1,12 @@
 var gulp        = require('gulp');
 var sass        = require('gulp-sass');
 var prefix      = require('gulp-autoprefixer');
-var uglify      = require('gulp-uglify');
 var imagemin    = require('gulp-imagemin');
 var newer       = require('gulp-newer');
-var livereload  = require('gulp-livereload');
 var webserver   = require('gulp-webserver');
+var uglify      = require('gulp-uglify');
+var livereload  = require('gulp-livereload');
+var sourcemaps  = require('gulp-sourcemaps');
 
 var paths = {
   styles: {
@@ -35,6 +36,7 @@ var displayError = function(error) {
 
 gulp.task('sass', function (){
   return gulp.src(paths.styles.files)
+    .pipe(sourcemaps.init())
     .pipe(sass({
         outputStyle: 'compressed',
         sourceComments: 'map',
@@ -46,6 +48,7 @@ gulp.task('sass', function (){
     .pipe(prefix(
         'last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'
     ))
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(livereload());
 });
@@ -59,7 +62,9 @@ gulp.task('images', function(){
 
 gulp.task('uglify', function() {
   return gulp.src(paths.js.files)
+    .pipe(sourcemaps.init())
     .pipe(uglify())
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(paths.js.dest))
     .pipe(livereload());
 });
