@@ -5,7 +5,6 @@ var imagemin    = require('gulp-imagemin');
 var newer       = require('gulp-newer');
 var webserver   = require('gulp-webserver');
 var uglify      = require('gulp-uglify');
-var livereload  = require('gulp-livereload');
 var sourcemaps  = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 
@@ -74,7 +73,6 @@ gulp.task('server', function() {
   gulp.src('.')
     .pipe(webserver({
       open: true,
-      livereload: true
     }));
 });
 
