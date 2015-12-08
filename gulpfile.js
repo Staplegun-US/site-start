@@ -87,4 +87,6 @@ gulp.task('browser-sync', function() {
 gulp.task('default', ['browser-sync', 'sass', 'uglify', 'images'], function() {
   gulp.watch(paths.styles.files,  ['sass']);
   gulp.watch(paths.js.files,      ['uglify']);
+  gulp.watch("*.html").on('change', browserSync.reload);
+
 });
