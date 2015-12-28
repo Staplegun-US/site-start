@@ -1,12 +1,13 @@
-var gulp        = require('gulp');
-var sass        = require('gulp-sass');
-var prefix      = require('gulp-autoprefixer');
-var imagemin    = require('gulp-imagemin');
-var newer       = require('gulp-newer');
-var webserver   = require('gulp-webserver');
-var uglify      = require('gulp-uglify');
-var sourcemaps  = require('gulp-sourcemaps');
-var browserSync = require('browser-sync').create();
+var gulp          = require('gulp');
+var sass          = require('gulp-sass');
+var postcss       = require('gulp-postcss');
+var autoprefixer  = require('autoprefixer');
+var imagemin      = require('gulp-imagemin');
+var newer         = require('gulp-newer');
+var webserver     = require('gulp-webserver');
+var uglify        = require('gulp-uglify');
+var sourcemaps    = require('gulp-sourcemaps');
+var browserSync   = require('browser-sync').create();
 
 var paths = {
   styles: {
@@ -33,7 +34,11 @@ gulp.task('sass', function (){
         includePaths : [paths.styles.src]
     }))
     .on('error', sass.logError)
-    .pipe(prefix())
+    .pipe(postcss([
+      autoprefixer({
+        browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4']
+      })
+    ]))
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(browserSync.stream());
