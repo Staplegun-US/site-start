@@ -5,8 +5,8 @@ var imagemin    = require('gulp-imagemin');
 var newer       = require('gulp-newer');
 var webserver   = require('gulp-webserver');
 var uglify      = require('gulp-uglify');
-var livereload  = require('gulp-livereload');
 var sourcemaps  = require('gulp-sourcemaps');
+var browserSync = require('browser-sync').create();
 
 var paths = {
   styles: {
@@ -50,7 +50,7 @@ gulp.task('sass', function (){
     ))
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(paths.styles.dest))
-    .pipe(livereload());
+    .pipe(browserSync.stream());
 });
 
 gulp.task('images', function(){
@@ -66,19 +66,27 @@ gulp.task('uglify', function() {
     .pipe(uglify())
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(paths.js.dest))
-    .pipe(livereload());
+    .pipe(browserSync.stream());
 });
 
 gulp.task('server', function() {
   gulp.src('.')
     .pipe(webserver({
       open: true,
-      livereload: true
     }));
 });
 
-gulp.task('default', ['sass', 'uglify', 'images'], function() {
-  livereload.listen();
+gulp.task('browser-sync', function() {
+  browserSync.init({
+    server: {
+      baseDir: "./"
+    }
+  });
+});
+
+gulp.task('default', ['browser-sync', 'sass', 'uglify', 'images'], function() {
   gulp.watch(paths.styles.files,  ['sass']);
   gulp.watch(paths.js.files,      ['uglify']);
+  gulp.watch("*.html").on('change', browserSync.reload);
+
 });
