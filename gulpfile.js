@@ -4,7 +4,6 @@ var postcss       = require('gulp-postcss');
 var autoprefixer  = require('autoprefixer');
 var imagemin      = require('gulp-imagemin');
 var newer         = require('gulp-newer');
-var webserver     = require('gulp-webserver');
 var uglify        = require('gulp-uglify');
 var sourcemaps    = require('gulp-sourcemaps');
 var browserSync   = require('browser-sync').create();
@@ -25,6 +24,12 @@ var paths = {
   }
 }
 
+var postPlugins = [
+  autoprefixer({
+    browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4']
+  })
+]
+
 gulp.task('sass', function (){
   return gulp.src(paths.styles.files)
     .pipe(sourcemaps.init())
@@ -34,11 +39,7 @@ gulp.task('sass', function (){
         includePaths : [paths.styles.src]
     }))
     .on('error', sass.logError)
-    .pipe(postcss([
-      autoprefixer({
-        browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4']
-      })
-    ]))
+    .pipe(postcss(postPlugins))
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(browserSync.stream());
@@ -58,13 +59,6 @@ gulp.task('uglify', function() {
     .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest(paths.js.dest))
     .pipe(browserSync.stream());
-});
-
-gulp.task('server', function() {
-  gulp.src('.')
-    .pipe(webserver({
-      open: true,
-    }));
 });
 
 gulp.task('browser-sync', function() {

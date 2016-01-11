@@ -4,7 +4,6 @@
   "dependencies": {
     "jquery": "~1.11.3",
     "modernizr": "~2.8.3",
-    "normalize-scss": "~3.0.3",
     "susy": "~2.2.6"
   }
 }
