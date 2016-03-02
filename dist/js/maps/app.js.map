@@ -1,1 +1,1 @@
-{"version":3,"sources":["app.js"],"names":["$","document","ready"],"mappings":"AAAAA,EAAEC,UAAUC,MAAM","file":"app.js","sourcesContent":["$(document).ready(function(){\n\n});\n"],"sourceRoot":"/source/"}
+{"version":3,"sources":["app.js"],"names":["$","document","ready"],"mappings":"AAAAA,EAAEC,UAAUC,MAAM","file":"app.js","sourceRoot":"/source/","sourcesContent":["$(document).ready(function(){\n\n});\n"]}
