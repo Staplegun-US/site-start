@@ -24,6 +24,7 @@
     "imagemin-cli": "^3.0.0",
     "jquery": "^3.1.1",
     "livereload": "^0.6.0",
+    "node-rev": "^2.0.0",
     "normalize.css": "^5.0.0",
     "npm-run-all": "^4.0.2",
     "postcss": "^5.2.16",
@@ -42,17 +43,22 @@
     "rollup-plugin-eslint": "^3.0.0",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-uglify": "^1.0.1",
-    "rollup-watch": "^3.2.2"
+    "rollup-watch": "^3.2.2",
+    "stylelint": "^7.9.0"
   },
   "scripts": {
-    "build:css:dev": "postcss -c postcss.dev.js -m",
-    "build:css:prod": "postcss -c postcss.prod.js -m",
-    "build:js:dev": "rollup -c rollup.config.dev.js --watch",
-    "build:js:prod": "rollup -c rollup.config.prod.js",
-    "build:images:dev": "imagemin src/images/* --out-dir=web/public/images",
+    "build:dev:css": "postcss -c postcss.dev.js",
+    "build:dev:images": "imagemin src/images/* --out-dir=web/public/images",
+    "build:dev:js": "rollup -c rollup.config.dev.js --watch",
+
+    "build:prod:css": "postcss -c postcss.prod.js",
+    "build:prod:js": "rollup -c rollup.config.prod.js",
+
+    "build:manifest": "nodeRev 'web/public/css/main.min.css,web/public/js/script.min.js' --hash -o 'web/public' --file 'web/public/prod_manifest.json'",
     "reload": "livereload 'web/public/, web/craft/templates/'",
-    "watch": "npm-run-all -p build:images:dev build:js:dev build:css:dev reload",
-    "prod": "npm-run-all -p build:js:prod build:css:prod"
+
+    "dev": "npm-run-all -p build:dev:* reload",
+    "prod": "npm-run-all -s build:prod:* build:manifest"
   },
   "private": "true",
   "license": "MIT"

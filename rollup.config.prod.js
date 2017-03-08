@@ -7,16 +7,16 @@ let pkg = require('./package.json');
 let external = Object.keys(pkg.dependencies);
 
 export default {
-	entry: 'src/js/main.js',
-	format: 'iife',
-	sourceMap: 'inline',
-	plugins: [
-		nodeResolve(
-			{ jsnext: true, main: true, browser: true  }
-		),
-		commonjs({}),
-		babel(),
+  entry: 'src/js/main.js',
+  format: 'iife',
+  sourceMap: 'inline',
+  plugins: [
+    nodeResolve(
+      { jsnext: true, main: true, browser: true  }
+    ),
+    commonjs({}),
+    babel(),
     uglify()
-	],
-	dest: 'web/public/js/script.min.js'
+  ],
+  dest: 'web/public/js/script.min.js'
 };
