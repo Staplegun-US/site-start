@@ -2,10 +2,10 @@
 var host = location.host.split('.');
 var tld = host[host.length - 1];
 if (tld == 'dev') {
-    document.write(
-        '<script src="http://' + (location.host || 'localhost').split(':')[0] +
-        ':35729/livereload.js?snipver=1"></' + 'script>'
-    );
+  document.write(
+    '<script src="http://' + (location.host || 'localhost').split(':')[0] +
+    ':35729/livereload.js?snipver=1"></' + 'script>'
+  );
 }
 
 // Site specific imports
