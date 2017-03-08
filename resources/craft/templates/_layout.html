@@ -30,12 +30,10 @@
         </ul>
       </nav>
     </header>
-    <div>
-      <main id="content"{% if entry is defined and entry.type.handle == "homepage" %}  class="homepage"{% endif %} role="main">
-        {% block content %}
-        {% endblock %}
-      </main>
-    </div>
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
     <footer>
     </footer>
   </div>
