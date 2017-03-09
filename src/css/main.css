@@ -1,0 +1,14 @@
+/*Node module css imports*/
+@import 'normalize.css/normalize.css';
+@import 'hamburgers/dist/hamburgers.css';
+
+/*Site specific css imports*/
+@import 'partials/defaults.css';
+
+/*CSS Variable declarations*/
+:root {
+  /*--dark-grey:#777777;*/
+}
+
+/*Breakpoints for postcss-custom-media*/
+/*@custom-media --desktop-up (min-width:1100px);*/

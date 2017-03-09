@@ -9,7 +9,7 @@ Location:     Oklahoma City, OK, US
 
 
 /* THANKS */
-Name:         Staplegun Interactive Team - (Jack, Koty, Darren, Brandon, Aaron)
+Name:         Staplegun Interactive Team
 
 
 /* SITE */
