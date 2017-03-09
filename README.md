@@ -1,4 +1,4 @@
-site-start [![Dependency Status](https://gemnasium.com/Staplegun-US/site-start.svg)](https://gemnasium.com/Staplegun-US/site-start)
+site-start
 ==========
 
 By [Staplegun Design](http://staplegun.us)
