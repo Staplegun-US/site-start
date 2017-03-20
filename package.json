@@ -17,6 +17,7 @@
     "babel-plugin-transform-es2015-block-scoped-functions": "^6.22.0",
     "babel-plugin-transform-es2015-block-scoping": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
+    "criticalcss": "^2.1.0",
     "cssnano": "^3.10.0",
     "del": "^2.2.2",
     "del-cli": "^0.2.1",
@@ -52,13 +53,14 @@
     "build:dev:css": "postcss -c postcss.dev.js",
     "build:dev:images": "imagemin src/images/* --out-dir=web/public/images",
     "build:dev:js": "rollup -c rollup.config.dev.js --watch",
-    "build:cleanup": "del web/public/css/main.min* && del web/public/js/script.min*",
+    "build:cleanup": "del web/public/css/main.min* web/public/js/script.min* web/public/css/critical*",
+    "build:critical": "criticalcss -u http://oea.dev -f web/public/css/main.min.css -o web/public/css/critical.css",
+    "build:manifest": "nodeRev 'web/public/css/main.min.css,web/public/css/critical.css,web/public/js/script.min.js' --hash -o 'web/public' --file 'web/public/prod_manifest.json'",
     "build:prod:css": "postcss -c postcss.prod.js",
     "build:prod:js": "rollup -c rollup.config.prod.js",
-    "build:manifest": "nodeRev 'web/public/css/main.min.css,web/public/js/script.min.js' --hash -o 'web/public' --file 'web/public/prod_manifest.json'",
     "reload": "livereload 'web/public/, web/craft/templates/'",
     "dev": "npm-run-all -p build:dev:* reload",
-    "prod": "npm-run-all -s build:cleanup build:prod:* build:manifest"
+    "prod": "npm-run-all -s build:cleanup build:prod:* build:critical build:manifest"
   },
   "private": "true",
   "license": "MIT"

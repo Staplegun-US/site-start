@@ -36,6 +36,10 @@ npm install
 Run `npm run dev` during development.
 Run `npm run prod` to generate minified files and a manifest for cache busting.
 
+I also recommend loading web fonts asynchronously like the following, from:
+http://keithclark.co.uk/articles/loading-css-without-blocking-render/
+`<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Work+Sans:700" media="none" onload="if(media!='all')media='all'">`
+
 ## License
 
 Copyright (c) 2017 [Staplegun Design](http://staplegun.us)

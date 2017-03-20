@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /*Node module css imports*/
 @import 'normalize.css/normalize.css';
 @import 'hamburgers/dist/hamburgers.css';
