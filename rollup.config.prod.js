@@ -9,7 +9,8 @@ let external = Object.keys(pkg.dependencies);
 export default {
   entry: 'src/js/main.js',
   format: 'iife',
-  sourceMap: 'inline',
+  sourceMap: 'true',
+  sourceMapFile: 'web/public/js/script.min.js',
   plugins: [
     nodeResolve(
       { jsnext: true, main: true, browser: true  }

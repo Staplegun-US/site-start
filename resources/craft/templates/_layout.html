@@ -42,6 +42,6 @@
     <footer>
     </footer>
   </div>
-  <script src="{% if craft.config.devMode %}/js/script.js{% else %}{{ cacheBuster('/js/script.js') }}{% endif %}"></script>
+  <script src="{% if craft.config.devMode %}/js/script.js{% else %}{{ cacheBuster('/js/script.min.js') }}{% endif %}"></script>
 </body>
 </html>

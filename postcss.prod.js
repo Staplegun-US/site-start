@@ -23,7 +23,7 @@ module.exports = {
   "cssnano": {
   },
   "map": {
-    "inline": true
+    "inline": false
   },
   "local-plugins": true,
   "input": "src/css/main.css",

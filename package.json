@@ -18,6 +18,8 @@
     "babel-plugin-transform-es2015-block-scoping": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
     "cssnano": "^3.10.0",
+    "del": "^2.2.2",
+    "del-cli": "^0.2.1",
     "eslint": "^3.17.1",
     "hamburgers": "^0.7.0",
     "imagemin": "^5.2.2",
@@ -50,15 +52,13 @@
     "build:dev:css": "postcss -c postcss.dev.js",
     "build:dev:images": "imagemin src/images/* --out-dir=web/public/images",
     "build:dev:js": "rollup -c rollup.config.dev.js --watch",
-
+    "build:cleanup": "del web/public/css/main.min* && del web/public/js/script.min*",
     "build:prod:css": "postcss -c postcss.prod.js",
     "build:prod:js": "rollup -c rollup.config.prod.js",
-
     "build:manifest": "nodeRev 'web/public/css/main.min.css,web/public/js/script.min.js' --hash -o 'web/public' --file 'web/public/prod_manifest.json'",
     "reload": "livereload 'web/public/, web/craft/templates/'",
-
     "dev": "npm-run-all -p build:dev:* reload",
-    "prod": "npm-run-all -s build:prod:* build:manifest"
+    "prod": "npm-run-all -s build:cleanup build:prod:* build:manifest"
   },
   "private": "true",
   "license": "MIT"
